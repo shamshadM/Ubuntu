@@ -13,7 +13,7 @@ To follow through this tutorial, you will need:
 + Some basic skill in HTML and CSS
 
 By the end of this tutorial, you will be able to build a jekyll blog from scratch.
-#Step 1- Install Ruby
+# Step 1- Install Ruby
 install using apt manager
 ```
 sudo apt-get update && sudo apt-get install ruby-full
@@ -40,7 +40,7 @@ source ~/.bashrc
 or
 Source ~/.zshrc
 ```
-# Install Jekyll
+# Step 2 - Install Jekyll
 Jekyll comes as Ruby Gem and can be installed in any system running Ruby. Run the following command below in the terminal to install jekyll
 ```
 gem install jekyll bundler
@@ -70,25 +70,17 @@ gem install eventmachine --platform ruby
 budle exec jekyll serve --livereload
 ```
 If github page unable to develop the website its on from the main file. The do following command give below
+
+# offline build of the site and then load on the site
 ```
+JEKYLL_ENV=production bundle exec jekyll build --trace
 
+JEKYLL_ENV=production bundle exec jekyll build --watch
 
-
-
-
-
-
-
-
+```
 
 # Jekyll problem for not to run serve then do following commands
 1. lsof -wni tcp:4400
 Then record the PID
 Run 
 kill -9 PID
-
-
-
-
-
-
