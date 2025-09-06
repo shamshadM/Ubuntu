@@ -1,5 +1,5 @@
 # Ubuntu
-#Building a Blog site from Scratch using Jekyll
+# Building a Blog site from Scratch using Jekyll
 Building a website is not as hard or expensive as it was in the past. These days, you do not have to learn a crazy programming lauguage to have your site up and running.
 Instead, you can go the Jamstack way. In this article, we go through how to build and deploy a jekyll site.
 
