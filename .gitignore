@@ -1,2 +1,2 @@
-## This is file for git ignore
+# This is the git ignore file local available only
 .vscode
