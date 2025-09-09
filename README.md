@@ -9,16 +9,17 @@ Jekyll was released back in 2008 and has been one of the most convenient ways of
 
 # Prerequisites
 To follow through this tutorial, you will need:
-+ A code editor. Feel free to use your prefered code editor. You can download vscode (here)[https://go.microsoft.com/fwlink/?LinkID=760868].
++ A code editor. Feel free to use your prefered code editor. You can download vscode [here](https://go.microsoft.com/fwlink/?LinkID=760868).
 + Some basic skill in HTML and CSS
 
 By the end of this tutorial, you will be able to build a jekyll blog from scratch.
-# Step 1- Install Ruby
+# Step 1- Install Ruby and other prerequisites:
+
 install using apt manager
 ```
-sudo apt-get update && sudo apt-get install ruby-full
+sudo apt-get install ruby-full build-essential zlib1g-dev
 ```
-For linux, you'll need to set up gem installtion directory to prevent root permission errors. Add the lines below at the bottom of the .bashrc or .zshrc file located in the home folder.
+For linux, you'll need to set up gem installation directory to prevent root permission errors. Add the lines below at the bottom of the .bashrc or .zshrc file located in the home folder.
 ```
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
@@ -26,18 +27,19 @@ export PATH="$HOME/gems/bin:$PATH"
 You can use the echo command to append the above lines at the bottom of the .bashrc file.
 ```
 echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
- 			or
-echo 'export GEM_HOME="$HOME/gems"' >> ~/.zshrc
 echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc
-			or
+```
+If your using other shell used according environment
+```
+echo 'export GEM_HOME="$HOME/gems"' >> ~/.zshrc
 echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.zshrc 
 ```
-Then execute the .bashrc file
-or 
-execute the .zshrc file.
+Then execute file
 ```
 source ~/.bashrc
-or
+```
+If other shell used that
+```
 Source ~/.zshrc
 ```
 # Step 2 - Install Jekyll
@@ -51,17 +53,17 @@ Create a new jekyll site
 jekyll new blog
 cd blog
 ```
-See the file structure of the jekyl new blog
+See the file structure of the jekyll new blog
 
 We'll look at the file structure. Let's run the site now. Run following command in the terminal.
 ```
 bundle exec jekyll serve
 ```
-The command bulids your site and you can access the site at http://127.0.0.1:4000 by default.You can run site using --livereload (-l) flag to autoreload the site after making changes.
+The command builds your site and you can access the site at http://127.0.0.1:4000 by default.You can run site using --livereload (-l) flag to autoreload the site after making changes.
 ```
 bundle exec jekyll serve -l
 ```
-if you encounter: `unable to load the EventMachine C extension; to use the pure-ruby reactor, requre "em/pure_ruby"',
+If you encounter: `unable to load the EventMachine C extension; to use the pure-ruby reactor, require "em/pure_ruby"',
 reinstall the Even Machine.
 
 ```
@@ -71,7 +73,8 @@ budle exec jekyll serve --livereload
 ```
 If github page unable to develop the website its on from the main file. The do following command give below
 
-# offline build of the site and then load on the site
+# offline build of the site and then load on the site for compression
+
 ```
 JEKYLL_ENV=production bundle exec jekyll build --trace
 
