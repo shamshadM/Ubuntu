@@ -113,7 +113,10 @@ https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 ##### Nerd Font
 https://www.nerdfonts.com/
 
-
+check the install font with code
+```
+echo -e '\uE0B2\uE0B0'
+````
 You can see on line 11 or other line a text like this
 
 ```
