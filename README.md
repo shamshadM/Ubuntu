@@ -87,3 +87,97 @@ JEKYLL_ENV=production bundle exec jekyll build --watch
 Then record the PID
 Run 
 kill -9 PID
+
+# You’re still hitting the same core issue, but this time the log shows a *different early failure*:
+
+```text
+checking for brotli/decode.h... no
+checking for brotli/encode.h... no
+checking for pkg-config for libbrotlicommon... not found
+```
+
+This means the system Brotli development libraries are missing — **but even if you fix this, Ruby 3.3 will still break later (as you already saw).**
+
+So you actually have **two problems**:
+
+---
+
+## ❌ Problem 1: Missing system Brotli dev libraries
+
+Install them:
+
+```bash
+sudo apt update
+sudo apt install libbrotli-dev pkg-config build-essential ruby-dev
+```
+
+This fixes:
+
+* missing `decode.h`
+* missing `encode.h`
+* missing `pkg-config`
+
+---
+
+## ❌ Problem 2 (the real blocker): Ruby 3.3 incompatibility
+
+You already got this error earlier:
+
+> incompatible pointer type in brotli.c
+
+That means:
+
+👉 `brotli 0.2.3` is **not compatible with Ruby 3.3**
+
+So even after installing `libbrotli-dev`, it will likely FAIL again.
+
+---
+
+# ✅ Real working solutions
+
+## ✔️ Option A (BEST): Remove jekyll-brotli
+
+In your `Gemfile`:
+
+```ruby
+# gem "jekyll-brotli"
+```
+
+Then:
+
+```bash
+bundle install
+```
+
+This is the cleanest fix for most Jekyll sites.
+
+---
+
+## ✔️ Option B: Keep compression WITHOUT Ruby gem (recommended alternative)
+
+Install CLI tool:
+
+```bash
+sudo apt install brotli
+```
+
+After building Jekyll:
+
+```bash
+jekyll build
+```
+
+Then compress output:
+
+```bash
+find _site -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \) -exec brotli -f -k {} \;
+```
+---
+
+# 🧠 Bottom line
+
+* Installing `libbrotli-dev` fixes **one missing header issue**
+* But **Ruby 3.3 + brotli 0.2.3 is fundamentally incompatible**
+* The real fix is to **remove `jekyll-brotli` or avoid Ruby-native Brotli**
+
+---
